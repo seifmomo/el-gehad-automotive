@@ -22,19 +22,41 @@ window.ELG_API = {
       }
       return { status: res.status, body: data };
     } catch (err) {
-      if (this._fallbackCache) throw err;
+      if (this._fallbackCache) {
+        return this._handleStaticRequest(path, opts, this._fallbackCache);
+      }
       const fallback = await this._loadStatic();
       return this._handleStaticRequest(path, opts, fallback);
     }
   },
 
   _fallbackCache: null,
+  _fallbackPromise: null,
 
   async _loadStatic() {
     if (this._fallbackCache) return this._fallbackCache;
-    const res = await fetch(this.staticFile);
-    this._fallbackCache = await res.json();
-    return this._fallbackCache;
+    if (!this._fallbackPromise) {
+      this._fallbackPromise = this._fetchStatic().then(data => {
+        this._fallbackCache = data;
+        return data;
+      }).finally(() => { this._fallbackPromise = null; });
+    }
+    return this._fallbackPromise;
+  },
+
+  async _fetchStatic() {
+    let lastErr;
+    for (let attempt = 0; attempt < 3; attempt++) {
+      try {
+        const res = await fetch(this.staticFile, { cache: "default" });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return await res.json();
+      } catch (err) {
+        lastErr = err;
+        if (attempt < 2) await new Promise(r => setTimeout(r, 600 * (attempt + 1)));
+      }
+    }
+    throw lastErr;
   },
 
   _handleStaticRequest(path, opts, data) {

@@ -119,7 +119,7 @@
         <a href="./#inventory" class="back-link">&larr; Back to Fleet</a>
         <div class="vehicle-grid">
           <div class="vehicle-media">
-            <img id="hero-img" src="8.jpeg" alt="Vehicle">
+            <img id="hero-img" src="images/showroom/8.jpeg" alt="Vehicle">
           </div>
           <div>
             <span class="vehicle-badge" id="vehicle-badge">Available</span>
@@ -199,7 +199,7 @@
         const res = await ELG_API.getVehicle(id);
         const v = res.body;
 
-        document.getElementById('hero-img').src = v.image || '8.jpeg';
+        document.getElementById('hero-img').src = v.image || 'images/showroom/8.jpeg';
         document.getElementById('vehicle-title').innerHTML = `${v.brand} <em>${v.model}</em>`;
         document.getElementById('vehicle-desc').textContent = v.description;
 

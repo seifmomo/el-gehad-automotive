@@ -140,11 +140,12 @@ section{padding:7.5rem 0}
 .search-input::placeholder{color:var(--muted)}
 .search-input:focus{outline:none;border-color:var(--bronze);box-shadow:0 0 0 4px var(--glow)}
 .inv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.8rem}
+.load-more{margin:2.6rem auto 0;display:flex}
 .car-card{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;position:relative;transition:transform .45s var(--ease),box-shadow .45s,border-color .3s;opacity:0;transform:translateY(26px)}
 .car-card.visible{opacity:1;transform:translateY(0)}
 .car-card:hover{border-color:rgba(180,120,44,.35);transform:translateY(-6px);box-shadow:var(--sh)}
 .car-visual{position:relative;height:225px;overflow:hidden;background:var(--bg-alt)}
-.car-visual img{transition:transform .9s var(--ease)}
+.car-visual img{transition:transform .9s var(--ease);width:100%;height:100%;object-fit:cover}
 .car-card:hover .car-visual img{transform:scale(1.07)}
 .car-visual::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(28,25,21,.25),transparent 45%);pointer-events:none}
 .card-badge{position:absolute;top:1.2rem;left:1.2rem;z-index:5;background:rgba(28,25,21,.72);backdrop-filter:blur(8px);color:#fff;padding:.4rem .95rem;border-radius:999px;font-size:.64rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
@@ -293,7 +294,7 @@ footer{background:var(--ink);color:#f2eee6;padding:5.5rem 0 2.5rem}
 <main>
   <section class="hero">
     <div class="hero-bg">
-      <img src="8.jpeg" alt="Luxury performance car in the Gehad showroom">
+      <img src="images/showroom/8.jpeg" alt="Luxury performance car in the Gehad showroom">
     </div>
     <div class="container">
       <div class="stagger-children" style="max-width:780px;">
@@ -335,7 +336,7 @@ footer{background:var(--ink);color:#f2eee6;padding:5.5rem 0 2.5rem}
         <div class="feat-gallery">
           <span class="feat-badge">Exclusive Fleet</span>
           <div class="feat-img-holder">
-            <img src="8.jpeg" alt="Featured vehicle">
+            <img src="images/showroom/8.jpeg" alt="Featured vehicle">
           </div>
         </div>
         <div class="feat-details">
@@ -375,6 +376,7 @@ footer{background:var(--ink);color:#f2eee6;padding:5.5rem 0 2.5rem}
       </div>
 
       <div class="inv-grid"></div>
+      <button id="load-more" class="btn btn-ink load-more" onclick="renderInventory()" style="display:none">Load More Vehicles <span>&darr;</span></button>
     </div>
   </section>
 
@@ -405,7 +407,7 @@ footer{background:var(--ink);color:#f2eee6;padding:5.5rem 0 2.5rem}
         <div class="exp-visual-side">
           <div class="exp-img-frame">
             <div class="exp-img-wrap">
-              <img src="3.jpeg" alt="Detail of a luxury vehicle headlight">
+              <img src="images/showroom/3.jpeg" alt="Detail of a luxury vehicle headlight">
             </div>
           </div>
           <div class="exp-floating-card">
@@ -502,49 +504,41 @@ menu.addEventListener("click", function(e) { if (e.target === menu) closeMenu();
 
 // SEARCH VEHICLES
 let searchTimeout;
-async function searchVehicles(e) {
-  const query = e.target.value.trim();
-  clearTimeout(searchTimeout);
+const INV_PAGE = 9;
+let INV_STATE = { master: [], all: [] };
+let currentCategory = "all";
+let currentQuery = "";
 
-  if (!query) {
-    return loadInventory();
+function filteredList() {
+  let list = INV_STATE.master;
+  if (currentCategory !== "all") list = list.filter(v => v.category === currentCategory);
+  if (currentQuery) {
+    const q = currentQuery.toLowerCase();
+    list = list.filter(v =>
+      (v.brand + " " + v.model + " " + (v.variant || "") + " " + (v.description || "")).toLowerCase().includes(q)
+    );
   }
+  return list;
+}
 
-  searchTimeout = setTimeout(async () => {
-    try {
-      const res = await ELG_API.searchVehicles(query);
-      const grid = document.querySelector(".inv-grid");
-      if (grid) {
-        grid.innerHTML = res.body.map(createCarCard).join("");
-        grid.querySelectorAll(".car-card").forEach((card, i) => {
-          card.classList.add("visible");
-          card.style.transitionDelay = (i * 0.05) + "s";
-        });
-      }
-    } catch (err) {
-      console.error("Search failed:", err);
-    }
-  }, 400);
+function searchVehicles(e) {
+  currentQuery = e.target.value.trim();
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(applyFilters, 300);
 }
 
 // INVENTORY FILTER
 function filterCars(e, cat) {
   document.querySelectorAll(".filter-btn").forEach(function(b) { b.classList.remove("active"); });
-  e.currentTarget.classList.add("active");
-  document.querySelectorAll(".car-card").forEach(function(c) {
-    var show = cat === "all" || c.dataset.cat === cat;
-    if (show) {
-      c.classList.add("visible");
-      c.style.opacity = "1";
-      c.style.transform = "scale(1)";
-      c.style.pointerEvents = "auto";
-    } else {
-      c.classList.remove("visible");
-      c.style.opacity = "0.15";
-      c.style.transform = "scale(0.97)";
-      c.style.pointerEvents = "none";
-    }
-  });
+  if (e) e.currentTarget.classList.add("active");
+  currentCategory = cat;
+  applyFilters();
+}
+
+function applyFilters() {
+  INV_STATE.all = filteredList();
+  INV_STATE.shown = 0;
+  renderInventory();
 }
 
 // DYNAMIC INVENTORY FROM API
@@ -568,7 +562,7 @@ function createCarCard(v) {
     specsHtml += '<div class="spec-mini-item"><text>&mdash;</text><label>&mdash;</label></div>';
   }
 
-  const imgSrc = v.image && v.image.startsWith("http") ? v.image : (v.image || "8.jpeg");
+  const imgSrc = v.image && v.image.startsWith("http") ? v.image : (v.image || "images/showroom/8.jpeg");
 
   return '<div class="car-card" data-cat="' + (v.category || "sedan") + '">' +
     '<span class="' + badgeClass + '">' + badgeText + '</span>' +
@@ -585,7 +579,7 @@ function createCarCard(v) {
 }
 
 function createFeaturedCard(v) {
-  const imgSrc = v.image && v.image.startsWith("http") ? v.image : (v.image || "8.jpeg");
+  const imgSrc = v.image && v.image.startsWith("http") ? v.image : (v.image || "images/showroom/8.jpeg");
   const price = formatPrice(v.price);
   const specs = typeof v.specs === "string" ? JSON.parse(v.specs) : (Array.isArray(v.specs) ? v.specs : []);
 
@@ -641,6 +635,26 @@ function showSkeletons(count) {
   ).join("");
 }
 
+function renderInventory() {
+  const grid = document.querySelector(".inv-grid");
+  const btn = document.getElementById("load-more");
+  if (!grid) return;
+
+  const next = INV_STATE.all.slice(0, INV_STATE.shown + INV_PAGE);
+  INV_STATE.shown = next.length;
+  grid.innerHTML = next.map(createCarCard).join("");
+
+  const cards = grid.querySelectorAll(".car-card");
+  cards.forEach((card, i) => {
+    card.style.transitionDelay = (i * 0.06) + "s";
+    requestAnimationFrame(() => card.classList.add("visible"));
+  });
+
+  if (btn) {
+    btn.style.display = INV_STATE.shown < INV_STATE.all.length ? "flex" : "none";
+  }
+}
+
 async function loadInventory() {
   const grid = document.querySelector(".inv-grid");
   if (!grid) return;
@@ -654,13 +668,8 @@ async function loadInventory() {
       createFeaturedCard(featured);
     }
 
-    grid.innerHTML = res.body.map(createCarCard).join("");
-
-    const cards = grid.querySelectorAll(".car-card");
-    cards.forEach((card, i) => {
-      card.style.transitionDelay = (i * 0.06) + "s";
-      requestAnimationFrame(() => card.classList.add("visible"));
-    });
+    INV_STATE.master = res.body;
+    applyFilters();
   } catch (err) {
     console.error("Failed to load inventory:", err);
     grid.innerHTML = '<p style="text-align:center;color:var(--muted);padding:3rem;">Unable to load inventory. Please try again later.</p>';

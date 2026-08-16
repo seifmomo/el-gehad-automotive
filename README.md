@@ -65,7 +65,7 @@ Change the password after your first login via `src/models/seed.js`.
 ├── admin.html          # Admin dashboard (login required)
 ├── js/api.js           # Frontend API client with static JSON fallback
 ├── vehicles.json       # Static export for GitHub Pages mode
-├── images/             # Branded SVG placeholders for all 71 vehicles
+├── images/             # Real per-model photos (one JPG per vehicle) + showroom/
 ├── server.js           # Express entry point
 ├── src/
 │   ├── config/         # Database setup
@@ -95,6 +95,7 @@ Change the password after your first login via `src/models/seed.js`.
 ## Deployment Notes
 
 - **GitHub Pages** serves the full catalog statically (browsing, search, filtering, vehicle pages). Admin dashboard and forms require the backend.
+- Vehicle photos are self-hosted real car images (sourced from [Wikimedia Commons](https://commons.wikimedia.org/), one matched photo per model) bundled under `images/`, so the catalog renders fully offline / on static hosting — no external image URLs.
 - **Full stack hosting**: the Express app runs anywhere Node.js is available (Render, Railway, Fly.io, a VPS). Point `base` in `js/api.js` at the hosted API if you deploy the frontend separately.
 - Environment variables (see `.env.example`): `PORT`, `JWT_SECRET`, `JWT_EXPIRES_IN`.
 
