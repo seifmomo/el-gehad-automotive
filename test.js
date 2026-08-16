@@ -57,11 +57,13 @@ async function run() {
   const list = await request('GET', '/api/vehicles');
   assert(list.status === 200, 'GET /api/vehicles returns 200');
   assert(Array.isArray(list.body), 'Returns array of vehicles');
-  assert(list.body.length === 6, '6 vehicles seeded from frontend data');
+  assert(list.body.length >= 50, '50+ vehicles seeded from Egyptian market data');
   assert(list.body.some(v => v.brand === 'Audi' && v.model === 'Q8 Black Edition'), 'Audi Q8 present');
   assert(list.body.some(v => v.featured === 1), 'At least one featured vehicle');
   console.log('  Seeded vehicle details:');
-  list.body.forEach(v => console.log(`    - ${v.brand} ${v.model} | EGP ${v.price.toLocaleString()} | featured=${v.featured}`));
+  list.body.slice(0, 10).forEach(v => console.log(`    - ${v.brand} ${v.model} | EGP ${v.price.toLocaleString()} | featured=${v.featured}`));
+  const brands = [...new Set(list.body.map(v => v.brand))];
+  console.log(`  Total brands: ${brands.length} | Total vehicles: ${list.body.length}`);
 
   const audi = list.body.find(v => v.brand === 'Audi');
   const detail = await request('GET', `/api/vehicles/${audi.id}`);
@@ -71,6 +73,18 @@ async function run() {
 
   const notFound = await request('GET', '/api/vehicles/99999');
   assert(notFound.status === 404, 'Non-existent vehicle returns 404');
+
+  console.log('\n[Vehicles Search & Filter]');
+  const searchRes = await request('GET', '/api/vehicles?search=Toyota');
+  assert(searchRes.status === 200, 'Search endpoint returns 200');
+  assert(searchRes.body.every(v => v.brand === 'Toyota'), 'Search returns only Toyota vehicles');
+  assert(searchRes.body.length >= 2, 'Search finds multiple Toyota models');
+
+  const catRes = await request('GET', '/api/vehicles?category=suv');
+  assert(catRes.body.every(v => v.category === 'suv'), 'Category filter returns only SUVs');
+
+  const featuredRes = await request('GET', '/api/vehicles?featured=1');
+  assert(featuredRes.body.every(v => v.featured === 1), 'Featured filter returns only featured');
 
   console.log('\n[Admin Auth]');
   const login = await request('POST', '/api/admin/login', { username: 'admin', password: 'GehadAdmin2026!' });
@@ -85,7 +99,7 @@ async function run() {
   console.log('\n[Admin Protected Routes]');
   const stats = await request('GET', '/api/admin/stats', null, { Authorization: `Bearer ${token}` });
   assert(stats.status === 200, 'GET /api/admin/stats works with token');
-  assert(stats.body.vehicles === 6, `Stats shows ${stats.body.vehicles} vehicles`);
+  assert(stats.body.vehicles >= 50, `Stats shows ${stats.body.vehicles} vehicles`);
 
   const noAuthStats = await request('GET', '/api/admin/stats');
   assert(noAuthStats.status === 401, 'Stats without token returns 401');
@@ -101,7 +115,7 @@ async function run() {
   assert(newCar.status === 201, 'POST /api/vehicles creates a vehicle');
 
   const createdList = await request('GET', '/api/vehicles');
-  assert(createdList.body.length === 7, 'Vehicle count is now 7');
+  assert(createdList.body.length === list.body.length + 1, 'Vehicle count increased by 1');
 
   console.log('\n[Newsletter API]');
   const sub = await request('POST', '/api/newsletter', { email: 'test@example.com' });

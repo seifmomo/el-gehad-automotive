@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
     } else {
       vehicles = await Vehicle.getAll(
         parseInt(page) || 1,
-        parseInt(limit) || 50
+        parseInt(limit) || 100
       );
     }
 

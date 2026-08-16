@@ -2,7 +2,7 @@ const { all: allQuery, get: getQuery, run: runQuery } = require('../config/datab
 
 const parseSpecs = (row) => ({ ...row, specs: row.specs ? JSON.parse(row.specs) : [] });
 
-exports.getAll = async (page = 1, limit = 50) => {
+exports.getAll = async (page = 1, limit = 100) => {
   const offset = (page - 1) * limit;
   const rows = await allQuery(
     `SELECT * FROM vehicles ORDER BY featured DESC, created_at DESC LIMIT ? OFFSET ?`,
