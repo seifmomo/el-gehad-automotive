@@ -17,7 +17,7 @@ app.use((req, res, next) => {
   }
   next();
 });
-app.use(express.static(__dirname, { extensions: ['html', 'js', 'css', 'jpeg', 'jpg', 'png', 'svg'] }));
+app.use(express.static(__dirname, { extensions: ['html', 'js', 'json', 'css', 'jpeg', 'jpg', 'png', 'svg'] }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use('/api/vehicles', require('./src/routes/vehicles'));

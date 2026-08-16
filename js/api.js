@@ -1,5 +1,6 @@
 window.ELG_API = {
   base: '/api',
+  staticFile: '/vehicles.json',
 
   async request(path, options = {}) {
     const url = this.base + path;
@@ -10,15 +11,50 @@ window.ELG_API = {
     if (opts.body && typeof opts.body === 'object') {
       opts.body = JSON.stringify(opts.body);
     }
-    const res = await fetch(url, opts);
-    const data = await res.json().catch(() => null);
-    if (!res.ok) {
-      const err = new Error(data?.error || 'Request failed');
-      err.status = res.status;
-      err.data = data;
-      throw err;
+    try {
+      const res = await fetch(url, opts);
+      const data = await res.json().catch(() => null);
+      if (!res.ok) {
+        const err = new Error(data?.error || 'Request failed');
+        err.status = res.status;
+        err.data = data;
+        throw err;
+      }
+      return { status: res.status, body: data };
+    } catch (err) {
+      if (this._fallbackCache) throw err;
+      const fallback = await this._loadStatic();
+      return this._handleStaticRequest(path, opts, fallback);
     }
-    return { status: res.status, body: data };
+  },
+
+  _fallbackCache: null,
+
+  async _loadStatic() {
+    if (this._fallbackCache) return this._fallbackCache;
+    const res = await fetch(this.staticFile);
+    this._fallbackCache = await res.json();
+    return this._fallbackCache;
+  },
+
+  _handleStaticRequest(path, opts, data) {
+    if (path === '/vehicles' || path.startsWith('/vehicles?')) {
+      const params = new URLSearchParams(path.split('?')[1] || '');
+      let result = data;
+      const cat = params.get('category');
+      if (cat) result = result.filter(v => v.category === cat);
+      const featured = params.get('featured');
+      if (featured === '1' || featured === 'true') result = result.filter(v => v.featured === 1 || v.featured === true);
+      const search = params.get('search');
+      if (search) {
+        const q = search.toLowerCase();
+        result = result.filter(v =>
+          (v.brand + ' ' + v.model + ' ' + (v.variant || '') + ' ' + (v.description || '')).toLowerCase().includes(q)
+        );
+      }
+      return { status: 200, body: result };
+    }
+    throw new Error('Feature not available in static mode');
   },
 
   async getVehicles(params = {}) {

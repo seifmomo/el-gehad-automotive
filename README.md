@@ -97,3 +97,18 @@ cp .env.example .env
 | `/vehicle.html?id=N` | Vehicle detail page with inquiry form |
 | `/contact.html` | Contact page with full inquiry form |
 | `/admin.html` | Admin dashboard (login required) |
+
+## Static Deployment (GitHub Pages)
+
+The frontend can be deployed to GitHub Pages for browsing vehicles. A static `vehicles.json` file is included as a fallback when the API is unavailable.
+
+**Limitations on GitHub Pages:**
+- Vehicle browsing works (uses `vehicles.json`)
+- Search and filtering work
+- Admin dashboard requires the Node.js backend
+- Newsletter/contact forms require the Node.js backend
+
+**To deploy to GitHub Pages:**
+1. Go to repository Settings → Pages
+2. Select the `main` branch and `/ (root)` directory
+3. Save — the site will be available at `https://yourusername.github.io/repo-name`
