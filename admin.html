@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Gehad Automotive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <script src="/js/api.js"></script>
+  <style>
+    :root{
+      --bg:#07070a;--bg1:#101116;--bg2:#181a22;--gold:#c8a84c;--gold-glow:rgba(200,168,76,.15);
+      --text:#eeece8;--muted:#a3a19d;--border:rgba(238,236,232,.08);--ease:cubic-bezier(.25,1,.5,1);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}*::before,*::after{box-sizing:border-box}
+    body{background:var(--bg);color:var(--text);font-family:"Outfit",sans-serif;font-weight:300;line-height:1.7}
+    a{text-decoration:none;color:inherit}
+    button{cursor:pointer;font-family:inherit;border:none;background:none}
+    .container{width:100%;max-width:1440px;margin:0 auto;padding:0 4rem}
+    @media(max-width:1024px){.container{padding:0 2rem}}
+    .admin-header{background:var(--bg1);border-bottom:1px solid var(--border);padding:1.5rem 0}
+    .admin-nav{display:flex;justify-content:space-between;align-items:center}
+    .logo{font-family:"Cormorant Garamond",serif;font-size:1.8rem;font-weight:700}
+    .logo span{color:var(--gold)}
+    .nav-links{display:flex;gap:2rem}
+    .nav-links a{font-size:.85rem;text-transform:uppercase;letter-spacing:2px;color:var(--muted);transition:color .3s}
+    .nav-links a:hover,.nav-links a.active{color:var(--gold)}
+    .logout-btn{border:1px solid var(--gold);color:var(--gold);padding:.5rem 1rem;font-size:.75rem;text-transform:uppercase;letter-spacing:2px;transition:background .3s}
+    .logout-btn:hover{background:var(--gold);color:var(--bg)}
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin:3rem 0}
+    .stat-card{background:var(--bg1);border:1px solid var(--border);padding:2rem;text-align:center}
+    .stat-card h3{font-family:"Cormorant Garamond",serif;font-size:2.5rem;color:var(--gold)}
+    .stat-card p{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-top:.5rem}
+    .section{padding:3rem 0;border-bottom:1px solid var(--border)}
+    .section h2{font-family:"Cormorant Garamond",serif;font-size:2rem;margin-bottom:2rem}
+    table{width:100%;border-collapse:collapse}
+    th{text-align:left;padding:1rem;border-bottom:1px solid var(--border);font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+    td{padding:1rem;border-bottom:1px solid var(--border);font-size:.9rem}
+    tr:hover{background:var(--bg2)/10}
+    .badge{padding:.25rem .5rem;font-size:.7rem;text-transform:uppercase;border-radius:0;border:1px solid var(--border)}
+    .badge-available{border-color:var(--gold);color:var(--gold)}
+    .badge-sold{border-color:#ff6b6b;color:#ff6b6b}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+    @media(max-width:768px){.form-row{grid-template-columns:1fr}}
+    .form-group{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem}
+    .form-group label{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+    .form-group input,textarea,.form-group select{background:var(--bg1);border:1px solid var(--border);color:var(--text);padding:.75rem;font-family:inherit;font-size:.9rem}
+    .form-group input:focus,textarea:focus,select:focus{outline:none;border-color:var(--gold)}
+    .btn-primary{background:var(--gold);color:var(--bg);padding:.75rem 2rem;font-size:.85rem;text-transform:uppercase;letter-spacing:2px;font-weight:600;transition:transform .3s,box-shadow .3s}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 30px var(--gold-glow)}
+    .btn-danger{background:transparent;border:1px solid #ff6b6b;color:#ff6b6b;padding:.5rem 1rem;font-size:.8rem;text-transform:uppercase;letter-spacing:1px;transition:background .3s}
+    .btn-danger:hover{background:#ff6b6b;color:var(--bg)}
+    .btn-small{padding:.4rem .8rem;font-size:.75rem}
+    .login-form{max-width:400px;margin:4rem auto}
+    .table-actions{display:flex;gap:.5rem}
+    .hidden{display:none}
+    .tab-content{margin-top:2rem}
+    .tabs{display:flex;gap:2rem;margin-bottom:2rem;border-bottom:1px solid var(--border)}
+    .tabs button{font-size:.85rem;text-transform:uppercase;letter-spacing:2px;color:var(--muted);padding:.75rem 0;border-bottom:2px solid transparent;transition:all .3s}
+    .tabs button.active{color:var(--gold);border-color:var(--gold)}
+    .form-feedback{padding:.75rem;margin:1rem 0;font-size:.85rem;text-transform:uppercase;letter-spacing:1px}
+    .form-feedback.success{color:#50fa7b}
+    .form-feedback.error{color:#ff6b6b}
+  </style>
+</head>
+<body>
+  <header class="admin-header">
+    <div class="container admin-nav">
+      <a href="/admin.html" class="logo">Gehad<span>.</span> Admin</a>
+      <div class="nav-links">
+        <a href="#" class="nav-link active" data-tab="dashboard">Dashboard</a>
+        <a href="#" class="nav-link" data-tab="vehicles">Vehicles</a>
+        <a href="#" class="nav-link" data-tab="inquiries">Inquiries</a>
+        <a href="#" class="nav-link" data-tab="subscribers">Subscribers</a>
+      </div>
+      <button class="logout-btn" id="logout-btn">Logout</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <div id="login-state" class="login-form">
+      <h2 style="font-family:'Cormorant Garamond',serif;font-size:2rem;margin-bottom:2rem;text-align:center;">Admin Login</h2>
+      <form id="login-form">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" required>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%">Login</button>
+        <div id="login-feedback" class="form-feedback"></div>
+      </form>
+    </div>
+
+    <div id="admin-panel" class="hidden">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="dashboard">Dashboard</button>
+        <button class="tab-btn" data-tab="vehicles">Vehicles</button>
+        <button class="tab-btn" data-tab="inquiries">Inquiries</button>
+        <button class="tab-btn" data-tab="subscribers">Subscribers</button>
+      </div>
+
+      <div class="tab-content">
+        <div id="tab-dashboard" class="tab-pane active">
+          <h2>Overview</h2>
+          <div class="stats-grid">
+            <div class="stat-card"><h3 id="stat-vehicles">0</h3><p>Total Vehicles</p></div>
+            <div class="stat-card"><h3 id="stat-subscribers">0</h3><p>Subscribers</p></div>
+            <div class="stat-card"><h3 id="stat-inquiries">0</h3><p>Total Inquiries</p></div>
+            <div class="stat-card"><h3 id="stat-new-inquiries">0</h3><p>New Inquiries</p></div>
+          </div>
+        </div>
+
+        <div id="tab-vehicles" class="tab-pane">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem">
+            <h2>Inventory</h2>
+            <button class="btn-primary" id="add-vehicle-btn">Add Vehicle</button>
+          </div>
+          <table id="vehicles-table">
+            <thead>
+              <tr><th>#</th><th>Brand</th><th>Model</th><th>Year</th><th>Price</th><th>Category</th><th>Featured</th><th>Status</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="vehicles-tbody"></tbody>
+          </table>
+          <div id="vehicle-form-container" class="hidden" style="margin-top:3rem">
+            <h3 id="vehicle-form-title">Add New Vehicle</h3>
+            <form id="vehicle-form">
+              <input type="hidden" id="vehicle-id">
+              <div class="form-row">
+                <div class="form-group"><label for="v-brand">Brand *</label><input type="text" id="v-brand" required></div>
+                <div class="form-group"><label for="v-model">Model *</label><input type="text" id="v-model" required></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label for="v-variant">Variant</label><input type="text" id="v-variant"></div>
+                <div class="form-group"><label for="v-year">Year</label><input type="number" id="v-year"></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label for="v-price">Price (EGP)</label><input type="number" id="v-price"></div>
+                <div class="form-group"><label for="v-finance">Finance Monthly</label><input type="number" id="v-finance"></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label for="v-finance-note">Finance Note</label><input type="text" id="v-finance-note"></div>
+                <div class="form-group"><label for="v-category">Category</label><select id="v-category"><option value="sedan">Sedan</option><option value="suv">SUV</option><option value="sports">Sports</option></select></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label for="v-status">Status</label><select id="v-status"><option value="available">Available</option><option value="new_arrival">New Arrival</option><option value="pre_order">Pre-Order</option><option value="sold">Sold</option></select></div>
+                <div class="form-group"><label for="v-badge">Badge Text</label><input type="text" id="v-badge"></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label for="v-color">Color</label><input type="text" id="v-color"></div>
+                <div class="form-group"><label for="v-engine">Engine</label><input type="text" id="v-engine"></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label for="v-power">Power</label><input type="text" id="v-power"></div>
+                <div class="form-group"><label for="v-transmission">Transmission</label><input type="text" id="v-transmission"></div>
+              </div>
+              <div class="form-group"><label for="v-image">Image Filename</label><input type="text" id="v-image"></div>
+              <div class="form-group"><label for="v-gallery">Gallery (comma-separated filenames)</label><input type="text" id="v-gallery"></div>
+              <div class="form-group"><label for="v-description">Description</label><textarea id="v-description" rows="3"></textarea></div>
+              <div class="form-group"><label for="v-specs">Specs (JSON array: [{label,value}])</label><textarea id="v-specs" rows="4" placeholder='[{"label":"Powertrain","value":"3.0L V6"}]' required></textarea></div>
+              <div class="form-row">
+                <div class="form-group"><label for="v-featured"><input type="checkbox" id="v-featured"> Featured Vehicle</label></div>
+              </div>
+              <button type="submit" class="btn-primary">Save Vehicle</button>
+              <div id="vehicle-feedback" class="form-feedback"></div>
+            </form>
+          </div>
+        </div>
+
+        <div id="tab-inquiries" class="tab-pane">
+          <h2>Inquiries</h2>
+          <table id="inquiries-table">
+            <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Phone</th><th>Subject</th><th>Message</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
+            <tbody id="inquiries-tbody"></tbody>
+          </table>
+        </div>
+
+        <div id="tab-subscribers" class="tab-pane">
+          <h2>Newsletter Subscribers</h2>
+          <table id="subscribers-table">
+            <thead><tr><th>#</th><th>Email</th><th>Source</th><th>Date</th></tr></thead>
+            <tbody id="subscribers-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let token = localStorage.getItem('gehad_admin_token');
+
+    const showLogin = () => { document.getElementById('login-state').classList.remove('hidden'); document.getElementById('admin-panel').classList.add('hidden'); };
+    const showPanel = () => { document.getElementById('login-state').classList.add('hidden'); document.getElementById('admin-panel').classList.remove('hidden'); document.getElementById('logout-btn').classList.remove('hidden'); };
+
+    if (token) { showPanel(); loadDashboard(); }
+
+    document.getElementById('login-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const fb = document.getElementById('login-feedback');
+      fb.textContent = 'Logging in...';
+      try {
+        const res = await ELG_API.adminLogin(document.getElementById('username').value, document.getElementById('password').value);
+        token = res.body.token;
+        localStorage.setItem('gehad_admin_token', token);
+        showPanel();
+        fb.textContent = '';
+        await loadDashboard();
+      } catch (err) {
+        fb.textContent = err.message;
+        fb.className = 'form-feedback error';
+      }
+    });
+
+    document.getElementById('logout-btn').addEventListener('click', () => {
+      localStorage.removeItem('gehad_admin_token');
+      token = null;
+      document.getElementById('login-form').reset();
+      showLogin();
+    });
+
+    async function loadDashboard() {
+      try {
+        const res = await ELG_API.adminStats(token);
+        const s = res.body;
+        document.getElementById('stat-vehicles').textContent = s.vehicles;
+        document.getElementById('stat-subscribers').textContent = s.subscribers;
+        document.getElementById('stat-inquiries').textContent = s.inquiries;
+        document.getElementById('stat-new-inquiries').textContent = s.newInquiries;
+        await loadVehicles();
+        await loadInquiries();
+        await loadSubscribers();
+      } catch (err) {
+        console.error(err);
+        showLogin();
+      }
+    }
+
+    async function loadVehicles() {
+      try {
+        const res = await ELG_API.adminVehicles(token);
+        const tbody = document.getElementById('vehicles-tbody');
+        tbody.innerHTML = '';
+        res.body.forEach((v, i) => {
+          const tr = document.createElement('tr');
+          const specs = typeof v.specs === 'string' ? JSON.parse(v.specs) : (v.specs || []);
+          const price = v.price > 0 ? `EGP ${v.price.toLocaleString()}` : 'On Request';
+          tr.innerHTML = `<td>${i+1}</td><td>${v.brand}</td><td>${v.model}</td><td>${v.year}</td><td>${price}</td>
+            <td>${v.category}</td><td>${v.featured ? 'Yes' : 'No'}</td>
+            <td><span class="badge badge-available">${v.status}</span></td>
+            <td class="table-actions">
+              <button class="btn-small" onclick="editVehicle(${v.id})">Edit</button>
+              <button class="btn-danger btn-small" onclick="deleteVehicle(${v.id})">Delete</button>
+            </td>`;
+          tbody.appendChild(tr);
+        });
+      } catch (err) { console.error(err); }
+    }
+
+    async function loadInquiries() {
+      try {
+        const res = await ELG_API.adminGetInquiries(token);
+        const tbody = document.getElementById('inquiries-tbody');
+        tbody.innerHTML = '';
+        res.body.forEach((inq, i) => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>${i+1}</td><td>${inq.name}</td><td>${inq.email}</td><td>${inq.phone||''}</td>
+            <td>${inq.subject||''}</td><td>${inq.message}</td>
+            <td><select onchange="updateInquiryStatus(${inq.id}, this.value)"><option value="new">New</option><option value="read" ${inq.status==='read'?'selected':''}>Read</option><option value="replied" ${inq.status==='replied'?'selected':''}>Replied</option></select></td>
+            <td>${new Date(inq.created_at).toLocaleDateString()}</td>
+            <td><button class="btn-danger btn-small" onclick="deleteInquiry(${inq.id})">Delete</button></td>`;
+          tbody.appendChild(tr);
+        });
+      } catch (err) { console.error(err); }
+    }
+
+    async function loadSubscribers() {
+      try {
+        const res = await ELG_API.adminGetSubscribers(token);
+        const tbody = document.getElementById('subscribers-tbody');
+        tbody.innerHTML = '';
+        res.body.forEach((s, i) => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>${i+1}</td><td>${s.email}</td><td>${s.source||''}</td><td>${new Date(s.created_at).toLocaleDateString()}</td>`;
+          tbody.appendChild(tr);
+        });
+      } catch (err) { console.error(err); }
+    }
+
+    document.getElementById('add-vehicle-btn').addEventListener('click', () => {
+      document.getElementById('vehicle-form').reset();
+      document.getElementById('vehicle-id').value = '';
+      document.getElementById('vehicle-form-title').textContent = 'Add New Vehicle';
+      document.getElementById('vehicle-form-container').classList.remove('hidden');
+      document.getElementById('vehicles-table').style.display = 'none';
+    });
+
+    window.editVehicle = async function(id) {
+      try {
+        const res = await ELG_API.getVehicle(id);
+        const v = res.body;
+        document.getElementById('vehicle-id').value = v.id;
+        document.getElementById('v-brand').value = v.brand || '';
+        document.getElementById('v-model').value = v.model || '';
+        document.getElementById('v-variant').value = v.variant || '';
+        document.getElementById('v-year').value = v.year || '';
+        document.getElementById('v-price').value = v.price || '';
+        document.getElementById('v-finance').value = v.finance_monthly || '';
+        document.getElementById('v-finance-note').value = v.finance_note || '';
+        document.getElementById('v-category').value = v.category || 'sedan';
+        document.getElementById('v-status').value = v.status || 'available';
+        document.getElementById('v-badge').value = v.badge || '';
+        document.getElementById('v-color').value = v.color || '';
+        document.getElementById('v-engine').value = v.engine || '';
+        document.getElementById('v-power').value = v.power || '';
+        document.getElementById('v-transmission').value = v.transmission || '';
+        document.getElementById('v-image').value = v.image || '';
+        document.getElementById('v-gallery').value = v.gallery || '';
+        document.getElementById('v-description').value = v.description || '';
+        document.getElementById('v-specs').value = v.specs ? JSON.stringify(v.specs, null, 2) : '[]';
+        document.getElementById('v-featured').checked = !!v.featured;
+        document.getElementById('vehicle-form-title').textContent = `Edit: ${v.brand} ${v.model}`;
+        document.getElementById('vehicle-form-container').classList.remove('hidden');
+        document.getElementById('vehicles-table').style.display = 'none';
+      } catch (err) { console.error(err); }
+    };
+
+    window.deleteVehicle = async function(id) {
+      if (!confirm('Delete this vehicle? This cannot be undone.')) return;
+      try {
+        await ELG_API.adminDeleteVehicle(token, id);
+        await loadVehicles();
+      } catch (err) { alert('Failed to delete: ' + err.message); }
+    };
+
+    window.deleteInquiry = async function(id) {
+      if (!confirm('Delete this inquiry?')) return;
+      try {
+        const res = await fetch(`/api/admin/inquiries/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
+        const data = await res.json();
+        if (res.ok) { await loadInquiries(); } else { alert(data.error); }
+      } catch (err) { alert('Failed to delete: ' + err.message); }
+    };
+
+    window.updateInquiryStatus = async function(id, status) {
+      try {
+        await fetch(`/api/admin/inquiries/${id}/status`, {
+          method: 'PUT', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
+          body: JSON.stringify({ status })
+        });
+      } catch (err) { console.error(err); }
+    };
+
+    document.getElementById('vehicle-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const fb = document.getElementById('vehicle-feedback');
+      const id = document.getElementById('vehicle-id').value;
+      const data = {
+        brand: document.getElementById('v-brand').value,
+        model: document.getElementById('v-model').value,
+        variant: document.getElementById('v-variant').value,
+        year: parseInt(document.getElementById('v-year').value) || null,
+        price: parseInt(document.getElementById('v-price').value) || 0,
+        finance_monthly: parseInt(document.getElementById('v-finance').value) || 0,
+        finance_note: document.getElementById('v-finance-note').value,
+        category: document.getElementById('v-category').value,
+        status: document.getElementById('v-status').value,
+        badge: document.getElementById('v-badge').value,
+        color: document.getElementById('v-color').value,
+        engine: document.getElementById('v-engine').value,
+        power: document.getElementById('v-power').value,
+        transmission: document.getElementById('v-transmission').value,
+        image: document.getElementById('v-image').value,
+        gallery: document.getElementById('v-gallery').value,
+        description: document.getElementById('v-description').value,
+        specs: JSON.parse(document.getElementById('v-specs').value),
+        featured: document.getElementById('v-featured').checked,
+        mileage: 'N/A'
+      };
+
+      try {
+        if (id) {
+          await ELG_API.adminUpdateVehicle(token, id, data);
+          fb.textContent = 'Vehicle updated successfully!';
+        } else {
+          await ELG_API.adminCreateVehicle(token, data);
+          fb.textContent = 'Vehicle created successfully!';
+        }
+        fb.className = 'form-feedback success';
+        document.getElementById('vehicle-form-container').classList.add('hidden');
+        document.getElementById('vehicles-table').style.display = '';
+        await loadVehicles();
+      } catch (err) {
+        fb.textContent = err.message;
+        fb.className = 'form-feedback error';
+      }
+    });
+
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+        this.classList.add('active');
+        document.getElementById('tab-' + this.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

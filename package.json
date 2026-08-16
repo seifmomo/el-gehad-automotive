@@ -1,0 +1,32 @@
+{
+  "name": "el-gehad-automotive",
+  "version": "1.0.0",
+  "description": "A modern car dealership website for Gehad Automotive — \"Where Performance Meets Luxury\".",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seifmomo/el-gehad-automotive.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/seifmomo/el-gehad-automotive/issues"
+  },
+  "homepage": "https://github.com/seifmomo/el-gehad-automotive#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.2.0",
+    "sqlite3": "^6.0.1"
+  }
+}

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vehicle Details | Gehad Automotive</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <script src="/js/api.js"></script>
+  <style>
+    :root{
+      --bg:#07070a;--bg1:#101116;--bg2:#181a22;--gold:#c8a84c;--gold-glow:rgba(200,168,76,0.15);
+      --text:#eeece8;--muted:#a3a19d;--border:rgba(238,236,232,0.08);--ease:cubic-bezier(0.25,1,.5,1);
+      --radius:1px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}*::before,*::after{box-sizing:border-box}
+    body{background:var(--bg);color:var(--text);font-family:"Outfit",sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
+    a{text-decoration:none;color:inherit}
+    img{display:block;width:100%;height:100%;object-fit:cover}
+    .container{width:100%;max-width:1440px;margin:0 auto;padding:0 4rem}
+    @media(max-width:1024px){.container{padding:0 2rem}}
+    @media(max-width:768px){.container{padding:0 1.5rem}}
+    header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(7,7,10,.75);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+    .nav-container{display:flex;justify-content:space-between;align-items:center;height:90px}
+    .logo{font-family:"Cormorant Garamond",serif;font-size:1.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+    .logo span{color:var(--gold)}
+    nav ul{display:flex;gap:3rem;list-style:none}
+    nav a{font-size:.85rem;text-transform:uppercase;letter-spacing:2px;font-weight:400;transition:color .3s}
+    nav a:hover{color:var(--gold)}
+    .cta-btn{border:1px solid var(--gold);color:var(--gold);padding:.75rem 1.75rem;font-size:.8rem;text-transform:uppercase;letter-spacing:2px;font-weight:500;position:relative;overflow:hidden;transition:color .4s}
+    .cta-btn::before{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--gold);transition:left .4s var(--ease);z-index:-1}
+    .cta-btn:hover{color:var(--bg)}
+    .cta-btn:hover::before{left:0}
+    .hero{height:60vh;position:relative;display:flex;align-items:center;overflow:hidden;padding-top:90px;margin-top:2rem}
+    .hero-bg{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6)}
+    .hero img{object-position:center}
+    .hero-content{position:relative;z-index:2;max-width:800px;margin-top:2rem}
+    .hero-title{font-family:"Cormorant Garamond",serif;font-size:4rem;font-weight:400;line-height:1.05;margin-bottom:1.5rem}
+    .hero-title em{font-style:italic}
+    .back-link{color:var(--muted);font-size:.85rem;text-transform:uppercase;letter-spacing:2px;display:inline-block;margin-bottom:1rem;transition:color .3s}
+    .back-link:hover{color:var(--gold)}
+    .spec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin:3rem 0}
+    .spec-item{background:var(--bg1);border:1px solid var(--border);padding:1.5rem;text-align:center;transition:transform .3s}
+    .spec-item:hover{transform:translateY(-4px)}
+    .spec-value{font-size:1.4rem;font-weight:600;color:var(--gold)}
+    .spec-label{font-size:.75rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-top:.25rem}
+    .price-display{font-size:2.5rem;font-weight:500;color:var(--gold);margin:2rem 0}
+    .inquiry-form{background:var(--bg1);border:1px solid var(--border);padding:3rem;margin:3rem 0}
+    .inquiry-form h3{font-family:"Cormorant Garamond",serif;font-size:2rem;margin-bottom:2rem}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+    @media(max-width:768px){.form-grid{grid-template-columns:1fr}}
+    .form-group{display:flex;flex-direction:column;gap:.5rem}
+    .form-group label{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
+    .form-group input,textarea{background:var(--bg);border:1px solid var(--border);color:var(--text);padding:1rem;font-family:inherit;font-size:.9rem;resize:vertical;transition:border-color .3s}
+    .form-group input::placeholder,.form-group textarea::placeholder{color:rgba(238,236,232,.3)}
+    .form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--gold)}
+    textarea{min-height:120px}
+    .form-actions{margin-top:2rem}
+    .loading{opacity:.5;pointer-events:none}
+    .form-feedback{padding:.75rem;margin-top:1rem;font-size:.85rem;text-transform:uppercase;letter-spacing:1px}
+    .form-feedback.success{color:#50fa7b}
+    .form-feedback.error{color:#ff6b6b}
+    footer{padding:3rem 0;background:var(--bg);border-top:1px solid var(--border);font-size:.85rem;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav-container">
+      <a href="/" class="logo">Gehad<span>.</span></a>
+      <nav>
+        <ul>
+          <li><a href="/#featured">Featured</a></li>
+          <li><a href="/#inventory">Inventory</a></li>
+          <li><a href="/#experience">Experience</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="/#inventory" class="cta-btn">Back to Fleet</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <img id="hero-img" src="" alt="Vehicle">
+    <div class="container">
+      <div class="hero-content">
+        <a href="/" class="back-link">&larr; Back to Gehad Automotive</a>
+        <h1 id="vehicle-title" class="hero-title"></h1>
+        <p id="vehicle-desc" style="font-size:1.1rem;color:var(--muted);max-width:640px;"></p>
+        <div id="vehicle-price" class="price-display"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="spec-grid" id="spec-grid"></div>
+
+    <section class="inquiry-form">
+      <h3>Express Interest in This Allocation</h3>
+      <form id="inquiry-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone">
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <input type="text" id="subject">
+          </div>
+          <div class="form-group" style="grid-column:1/-1">
+            <label for="message">Your Message *</label>
+            <textarea id="message" placeholder="Tell us about your interest in this vehicle..." required></textarea>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="cta-btn" id="submit-btn">Send Inquiry</button>
+          <div id="form-feedback" class="form-feedback"></div>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Gehad Automotive. Crafted beautifully to exact luxury specifications.</p>
+  </footer>
+
+  <script>
+    (async function() {
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get('id');
+      if (!id) {
+        window.location.href = '/';
+        return;
+      }
+
+      try {
+        const res = await ELG_API.getVehicle(id);
+        const v = res.body;
+
+        document.getElementById('hero-img').src = v.image || '8.jpeg';
+        document.getElementById('vehicle-title').innerHTML = `${v.brand} <em>${v.model}</em>`;
+        document.getElementById('vehicle-desc').textContent = v.description;
+
+        const priceEl = document.getElementById('vehicle-price');
+        if (v.price > 0) {
+          priceEl.textContent = `EGP ${v.price.toLocaleString()}`;
+        } else {
+          priceEl.textContent = 'Price on Request';
+        }
+
+        const specGrid = document.getElementById('spec-grid');
+        const specs = Array.isArray(v.specs) ? v.specs : [];
+        specGrid.innerHTML = '';
+        specs.forEach(s => {
+          const div = document.createElement('div');
+          div.className = 'spec-item';
+          div.innerHTML = `<div class="spec-value">${s.value}</div><div class="spec-label">${s.label}</div>`;
+          specGrid.appendChild(div);
+        });
+        while (specGrid.children.length < 4) {
+          const emptyDiv = document.createElement('div');
+          emptyDiv.className = 'spec-item';
+          emptyDiv.style.visibility = 'hidden';
+          specGrid.appendChild(emptyDiv);
+        }
+
+        document.getElementById('inquiry-form').addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const btn = document.getElementById('submit-btn');
+          const feedback = document.getElementById('form-feedback');
+          btn.classList.add('loading');
+          btn.textContent = 'Sending...';
+          feedback.textContent = '';
+
+          try {
+            await ELG_API.submitInquiry({
+              name: document.getElementById('name').value,
+              email: document.getElementById('email').value,
+              phone: document.getElementById('phone').value,
+              subject: document.getElementById('subject').value || `${v.brand} ${v.model} Inquiry`,
+              message: document.getElementById('message').value,
+              vehicle_id: v.id
+            });
+            feedback.textContent = 'Inquiry sent successfully! We will contact you shortly.';
+            feedback.className = 'form-feedback success';
+            e.target.reset();
+          } catch (err) {
+            feedback.textContent = err.message || 'Failed to send inquiry. Please try again.';
+            feedback.className = 'form-feedback error';
+          } finally {
+            btn.classList.remove('loading');
+            btn.textContent = 'Send Inquiry';
+          }
+        });
+
+        document.getElementById('inquiry-form').querySelector('[name="subject"]').value = `${v.brand} ${v.model} Inquiry`;
+      } catch (err) {
+        document.getElementById('vehicle-title').textContent = 'Vehicle Not Found';
+        document.getElementById('vehicle-desc').textContent = 'The requested vehicle could not be found.';
+      }
+    })();
+  </script>
+</body>
+</html>
