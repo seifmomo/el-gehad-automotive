@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#0a0a0f"/>
+  <rect x="40" y="40" width="720" height="520" fill="none" stroke="#c8a84c" stroke-width="2" opacity="0.35"/>
+  <circle cx="400" cy="250" r="110" fill="#11131a" stroke="#c8a84c" stroke-width="3" opacity="0.8"/>
+  <text x="400" y="225" font-family="Arial, sans-serif" font-size="52" font-weight="bold" fill="#c8a84c" text-anchor="middle">CHERY EQ5</text>
+  <text x="400" y="285" font-family="Arial, sans-serif" font-size="26" fill="#8a8f98" text-anchor="middle">ELECTRIC SUV</text>
+  <text x="400" y="500" font-family="Arial, sans-serif" font-size="20" fill="#4a4e55" text-anchor="middle">GEHAD AUTOMOTIVE</text>
+</svg>

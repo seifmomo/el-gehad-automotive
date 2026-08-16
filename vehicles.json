@@ -34,8 +34,8 @@
         "value": "7.jpeg & 8.jpeg"
       }
     ],
-    "image": "8.jpeg",
-    "gallery": "7.jpeg,8.jpeg",
+    "image": "images/audi-q8-black-edition.svg",
+    "gallery": "images/audi-q8-black-edition.svg",
     "featured": 1
   },
   {
@@ -69,8 +69,8 @@
         "value": "Showroom"
       }
     ],
-    "image": "5.jpeg",
-    "gallery": "5.jpeg",
+    "image": "images/mercedes-benz-class-s-580-l.svg",
+    "gallery": "images/mercedes-benz-class-s-580-l.svg",
     "featured": 0
   },
   {
@@ -104,8 +104,8 @@
         "value": "Bespoke"
       }
     ],
-    "image": "6.jpeg",
-    "gallery": "6.jpeg",
+    "image": "images/mercedes-benz-coupe.svg",
+    "gallery": "images/mercedes-benz-coupe.svg",
     "featured": 0
   },
   {
@@ -139,8 +139,8 @@
         "value": "Track"
       }
     ],
-    "image": "4.jpeg",
-    "gallery": "4.jpeg",
+    "image": "images/bmw-m-performance.svg",
+    "gallery": "images/bmw-m-performance.svg",
     "featured": 0
   },
   {
@@ -174,8 +174,8 @@
         "value": "Open Top"
       }
     ],
-    "image": "1.jpeg",
-    "gallery": "1.jpeg",
+    "image": "images/bentley-continental-gt.svg",
+    "gallery": "images/bentley-continental-gt.svg",
     "featured": 0
   },
   {
@@ -209,8 +209,8 @@
         "value": "Exotic"
       }
     ],
-    "image": "2.jpeg",
-    "gallery": "2.jpeg,3.jpeg",
+    "image": "images/scuderia-performance.svg",
+    "gallery": "images/scuderia-performance.svg",
     "featured": 0
   },
   {
@@ -243,8 +243,8 @@
         "value": "Gasoline"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Toyota+Corolla",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Toyota+Corolla",
+    "image": "images/toyota-corolla.svg",
+    "gallery": "images/toyota-corolla.svg",
     "featured": 0
   },
   {
@@ -273,8 +273,8 @@
         "value": "1.0L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Toyota+Yaris",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Toyota+Yaris",
+    "image": "images/toyota-yaris.svg",
+    "gallery": "images/toyota-yaris.svg",
     "featured": 0
   },
   {
@@ -303,8 +303,8 @@
         "value": "1.5L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Nissan+Sunny",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Nissan+Sunny",
+    "image": "images/nissan-sunny.svg",
+    "gallery": "images/nissan-sunny.svg",
     "featured": 0
   },
   {
@@ -333,8 +333,8 @@
         "value": "1.5L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Hyundai+Elantra",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Hyundai+Elantra",
+    "image": "images/hyundai-elantra.svg",
+    "gallery": "images/hyundai-elantra.svg",
     "featured": 0
   },
   {
@@ -363,8 +363,8 @@
         "value": "1.6L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Kia+K3",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Kia+K3",
+    "image": "images/kia-k3.svg",
+    "gallery": "images/kia-k3.svg",
     "featured": 0
   },
   {
@@ -397,8 +397,8 @@
         "value": "180 HP"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Honda+Civic",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Honda+Civic",
+    "image": "images/honda-civic.svg",
+    "gallery": "images/honda-civic.svg",
     "featured": 0
   },
   {
@@ -427,8 +427,8 @@
         "value": "2.0L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Honda+Accord",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Honda+Accord",
+    "image": "images/honda-accord.svg",
+    "gallery": "images/honda-accord.svg",
     "featured": 0
   },
   {
@@ -457,8 +457,8 @@
         "value": "2.0L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mazda+6",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mazda+6",
+    "image": "images/mazda-6.svg",
+    "gallery": "images/mazda-6.svg",
     "featured": 0
   },
   {
@@ -487,8 +487,8 @@
         "value": "1.5L TSI"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Volkswagen+Passat",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Volkswagen+Passat",
+    "image": "images/volkswagen-passat.svg",
+    "gallery": "images/volkswagen-passat.svg",
     "featured": 0
   },
   {
@@ -517,8 +517,8 @@
         "value": "1.5L TSI"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Skoda+Octavia",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Skoda+Octavia",
+    "image": "images/skoda-octavia.svg",
+    "gallery": "images/skoda-octavia.svg",
     "featured": 0
   },
   {
@@ -547,8 +547,8 @@
         "value": "1.5L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Geely+Emgrand",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Geely+Emgrand",
+    "image": "images/geely-emgrand.svg",
+    "gallery": "images/geely-emgrand.svg",
     "featured": 0
   },
   {
@@ -578,8 +578,8 @@
         "value": "1.6L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Lada+Granta",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Lada+Granta",
+    "image": "images/lada-granta.svg",
+    "gallery": "images/lada-granta.svg",
     "featured": 0
   },
   {
@@ -608,8 +608,8 @@
         "value": "1.5L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Chevrolet+Optra",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Chevrolet+Optra",
+    "image": "images/chevrolet-optra.svg",
+    "gallery": "images/chevrolet-optra.svg",
     "featured": 0
   },
   {
@@ -642,8 +642,8 @@
         "value": "Available"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Toyota+Fortuner",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Toyota+Fortuner",
+    "image": "images/toyota-fortuner.svg",
+    "gallery": "images/toyota-fortuner.svg",
     "featured": 0
   },
   {
@@ -672,8 +672,8 @@
         "value": "1.8L Hybrid"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Toyota+C-HR",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Toyota+C-HR",
+    "image": "images/toyota-c-hr.svg",
+    "gallery": "images/toyota-c-hr.svg",
     "featured": 0
   },
   {
@@ -702,8 +702,8 @@
         "value": "2.0L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Nissan+X-Trail",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Nissan+X-Trail",
+    "image": "images/nissan-x-trail.svg",
+    "gallery": "images/nissan-x-trail.svg",
     "featured": 0
   },
   {
@@ -732,8 +732,8 @@
         "value": "1.6L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Nissan+Kicks",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Nissan+Kicks",
+    "image": "images/nissan-kicks.svg",
+    "gallery": "images/nissan-kicks.svg",
     "featured": 0
   },
   {
@@ -762,8 +762,8 @@
         "value": "2.0L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Hyundai+Tucson",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Hyundai+Tucson",
+    "image": "images/hyundai-tucson.svg",
+    "gallery": "images/hyundai-tucson.svg",
     "featured": 0
   },
   {
@@ -792,8 +792,8 @@
         "value": "2.0L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Kia+Sportage",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Kia+Sportage",
+    "image": "images/kia-sportage.svg",
+    "gallery": "images/kia-sportage.svg",
     "featured": 0
   },
   {
@@ -822,8 +822,8 @@
         "value": "2.0L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mazda+CX-5",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mazda+CX-5",
+    "image": "images/mazda-cx-5.svg",
+    "gallery": "images/mazda-cx-5.svg",
     "featured": 0
   },
   {
@@ -852,8 +852,8 @@
         "value": "2.4L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mitsubishi+Outlander",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mitsubishi+Outlander",
+    "image": "images/mitsubishi-outlander.svg",
+    "gallery": "images/mitsubishi-outlander.svg",
     "featured": 0
   },
   {
@@ -882,8 +882,8 @@
         "value": "1.5L Turbo"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=MG+ZS",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=MG+ZS",
+    "image": "images/mg-zs.svg",
+    "gallery": "images/mg-zs.svg",
     "featured": 0
   },
   {
@@ -912,8 +912,8 @@
         "value": "1.5L Turbo"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Changan+CS35+PLUS",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Changan+CS35+PLUS",
+    "image": "images/changan-cs35-plus.svg",
+    "gallery": "images/changan-cs35-plus.svg",
     "featured": 0
   },
   {
@@ -942,8 +942,8 @@
         "value": "1.5L Turbo"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Chery+Tiggo+7+Plus",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Chery+Tiggo+7+Plus",
+    "image": "images/chery-tiggo-7-plus.svg",
+    "gallery": "images/chery-tiggo-7-plus.svg",
     "featured": 0
   },
   {
@@ -972,8 +972,8 @@
         "value": "2.0L Turbo"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Jetour+Traveler",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Jetour+Traveler",
+    "image": "images/jetour-traveler.svg",
+    "gallery": "images/jetour-traveler.svg",
     "featured": 0
   },
   {
@@ -1002,8 +1002,8 @@
         "value": "1.5L Turbo"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Geely+Boyue",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Geely+Boyue",
+    "image": "images/geely-boyue.svg",
+    "gallery": "images/geely-boyue.svg",
     "featured": 0
   },
   {
@@ -1032,8 +1032,8 @@
         "value": "1.5L TSI"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Volkswagen+Tiguan",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Volkswagen+Tiguan",
+    "image": "images/volkswagen-tiguan.svg",
+    "gallery": "images/volkswagen-tiguan.svg",
     "featured": 0
   },
   {
@@ -1062,8 +1062,8 @@
         "value": "2.0L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Subaru+Forester",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Subaru+Forester",
+    "image": "images/subaru-forester.svg",
+    "gallery": "images/subaru-forester.svg",
     "featured": 0
   },
   {
@@ -1092,8 +1092,8 @@
         "value": "2.0L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Skoda+Kodiaq",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Skoda+Kodiaq",
+    "image": "images/skoda-kodiaq.svg",
+    "gallery": "images/skoda-kodiaq.svg",
     "featured": 0
   },
   {
@@ -1122,8 +1122,8 @@
         "value": "2.0L Turbo"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mercedes-Benz+C-Class",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mercedes-Benz+C-Class",
+    "image": "images/mercedes-benz-c-class.svg",
+    "gallery": "images/mercedes-benz-c-class.svg",
     "featured": 0
   },
   {
@@ -1152,8 +1152,8 @@
         "value": "2.0L Turbo"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mercedes-Benz+A-Class",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mercedes-Benz+A-Class",
+    "image": "images/mercedes-benz-a-class.svg",
+    "gallery": "images/mercedes-benz-a-class.svg",
     "featured": 0
   },
   {
@@ -1186,8 +1186,8 @@
         "value": "4MATIK"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mercedes-Benz+CLA+200",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mercedes-Benz+CLA+200",
+    "image": "images/mercedes-benz-cla-200.svg",
+    "gallery": "images/mercedes-benz-cla-200.svg",
     "featured": 0
   },
   {
@@ -1216,8 +1216,8 @@
         "value": "2.0L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BMW+320",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BMW+320",
+    "image": "images/bmw-320.svg",
+    "gallery": "images/bmw-320.svg",
     "featured": 0
   },
   {
@@ -1246,8 +1246,8 @@
         "value": "2.0L Turbo"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BMW+530",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BMW+530",
+    "image": "images/bmw-530.svg",
+    "gallery": "images/bmw-530.svg",
     "featured": 0
   },
   {
@@ -1280,8 +1280,8 @@
         "value": "Quattro"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Audi+A4",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Audi+A4",
+    "image": "images/audi-a4.svg",
+    "gallery": "images/audi-a4.svg",
     "featured": 0
   },
   {
@@ -1310,8 +1310,8 @@
         "value": "2.0L TFSI"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Audi+A6",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Audi+A6",
+    "image": "images/audi-a6.svg",
+    "gallery": "images/audi-a6.svg",
     "featured": 0
   },
   {
@@ -1340,8 +1340,8 @@
         "value": "3.0L Turbo"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BMW+540i",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BMW+540i",
+    "image": "images/bmw-540i.svg",
+    "gallery": "images/bmw-540i.svg",
     "featured": 0
   },
   {
@@ -1374,8 +1374,8 @@
         "value": "4MATIC"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mercedes-Benz+GLE+450",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mercedes-Benz+GLE+450",
+    "image": "images/mercedes-benz-gle-450.svg",
+    "gallery": "images/mercedes-benz-gle-450.svg",
     "featured": 0
   },
   {
@@ -1408,8 +1408,8 @@
         "value": "xDrive"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BMW+X5",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BMW+X5",
+    "image": "images/bmw-x5.svg",
+    "gallery": "images/bmw-x5.svg",
     "featured": 0
   },
   {
@@ -1442,8 +1442,8 @@
         "value": "Quattro"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Audi+Q7",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Audi+Q7",
+    "image": "images/audi-q7.svg",
+    "gallery": "images/audi-q7.svg",
     "featured": 0
   },
   {
@@ -1472,8 +1472,8 @@
         "value": "3.0L Turbo"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Porsche+Cayenne",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Porsche+Cayenne",
+    "image": "images/porsche-cayenne.svg",
+    "gallery": "images/porsche-cayenne.svg",
     "featured": 0
   },
   {
@@ -1502,8 +1502,8 @@
         "value": "2.0L Turbo Hybrid"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Volvo+XC90",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Volvo+XC90",
+    "image": "images/volvo-xc90.svg",
+    "gallery": "images/volvo-xc90.svg",
     "featured": 0
   },
   {
@@ -1536,8 +1536,8 @@
         "value": "Permanent"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Land+Rover+Range+Rover",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Land+Rover+Range+Rover",
+    "image": "images/land-rover-range-rover.svg",
+    "gallery": "images/land-rover-range-rover.svg",
     "featured": 0
   },
   {
@@ -1571,8 +1571,8 @@
         "value": "503 HP"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BMW+M3",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BMW+M3",
+    "image": "images/bmw-m3.svg",
+    "gallery": "images/bmw-m3.svg",
     "featured": 0
   },
   {
@@ -1602,8 +1602,8 @@
         "value": "3.0L TwinTurbo"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BMW+M4",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BMW+M4",
+    "image": "images/bmw-m4.svg",
+    "gallery": "images/bmw-m4.svg",
     "featured": 0
   },
   {
@@ -1633,8 +1633,8 @@
         "value": "4.4L V8 TwinTurbo"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BMW+M5",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BMW+M5",
+    "image": "images/bmw-m5.svg",
+    "gallery": "images/bmw-m5.svg",
     "featured": 0
   },
   {
@@ -1667,8 +1667,8 @@
         "value": "500 km"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BMW+iX",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BMW+iX",
+    "image": "images/bmw-ix.svg",
+    "gallery": "images/bmw-ix.svg",
     "featured": 0
   },
   {
@@ -1702,8 +1702,8 @@
         "value": "625 km"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BMW+i7",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BMW+i7",
+    "image": "images/bmw-i7.svg",
+    "gallery": "images/bmw-i7.svg",
     "featured": 0
   },
   {
@@ -1732,8 +1732,8 @@
         "value": "3.0L Turbo"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Porsche+911+Targa",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Porsche+911+Targa",
+    "image": "images/porsche-911-targa.svg",
+    "gallery": "images/porsche-911-targa.svg",
     "featured": 0
   },
   {
@@ -1763,8 +1763,8 @@
         "value": "4.0L V8 TwinTurbo"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Porsche+Panamera",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Porsche+Panamera",
+    "image": "images/porsche-panamera.svg",
+    "gallery": "images/porsche-panamera.svg",
     "featured": 0
   },
   {
@@ -1794,8 +1794,8 @@
         "value": "4.0L V8 Biturbo"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mercedes-Benz+SL55+AMG",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mercedes-Benz+SL55+AMG",
+    "image": "images/mercedes-benz-sl55-amg.svg",
+    "gallery": "images/mercedes-benz-sl55-amg.svg",
     "featured": 0
   },
   {
@@ -1829,8 +1829,8 @@
         "value": "4MATIC+"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mercedes-Benz+AMG+GT+63",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mercedes-Benz+AMG+GT+63",
+    "image": "images/mercedes-benz-amg-gt-63.svg",
+    "gallery": "images/mercedes-benz-amg-gt-63.svg",
     "featured": 0
   },
   {
@@ -1860,8 +1860,8 @@
         "value": "4.0L V8 Biturbo"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mercedes-Benz+Maybach+S+580",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mercedes-Benz+Maybach+S+580",
+    "image": "images/mercedes-benz-maybach-s-580.svg",
+    "gallery": "images/mercedes-benz-maybach-s-580.svg",
     "featured": 0
   },
   {
@@ -1891,8 +1891,8 @@
         "value": "4.0L V8 Biturbo"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mercedes-Benz+G+500",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Mercedes-Benz+G+500",
+    "image": "images/mercedes-benz-g-500.svg",
+    "gallery": "images/mercedes-benz-g-500.svg",
     "featured": 0
   },
   {
@@ -1925,8 +1925,8 @@
         "value": "401 HP"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Nissan+Z",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Nissan+Z",
+    "image": "images/nissan-z.svg",
+    "gallery": "images/nissan-z.svg",
     "featured": 0
   },
   {
@@ -1955,8 +1955,8 @@
         "value": "1.2L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Suzuki+Swift",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Suzuki+Swift",
+    "image": "images/suzuki-swift.svg",
+    "gallery": "images/suzuki-swift.svg",
     "featured": 0
   },
   {
@@ -1985,8 +1985,8 @@
         "value": "1.0L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Maruti+Suzuki+Alto+K10",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Maruti+Suzuki+Alto+K10",
+    "image": "images/maruti-suzuki-alto-k10.svg",
+    "gallery": "images/maruti-suzuki-alto-k10.svg",
     "featured": 0
   },
   {
@@ -2015,8 +2015,8 @@
         "value": "1.5L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Honda+City",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Honda+City",
+    "image": "images/honda-city.svg",
+    "gallery": "images/honda-city.svg",
     "featured": 0
   },
   {
@@ -2045,8 +2045,8 @@
         "value": "1.4L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Hyundai+i20",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Hyundai+i20",
+    "image": "images/hyundai-i20.svg",
+    "gallery": "images/hyundai-i20.svg",
     "featured": 0
   },
   {
@@ -2075,8 +2075,8 @@
         "value": "1.2L"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Kia+Rio",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Kia+Rio",
+    "image": "images/kia-rio.svg",
+    "gallery": "images/kia-rio.svg",
     "featured": 0
   },
   {
@@ -2109,8 +2109,8 @@
         "value": "401 km"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BYD+Dolphin",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BYD+Dolphin",
+    "image": "images/byd-dolphin.svg",
+    "gallery": "images/byd-dolphin.svg",
     "featured": 0
   },
   {
@@ -2143,8 +2143,8 @@
         "value": "1,200 km"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BYD+Qin+Plus",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BYD+Qin+Plus",
+    "image": "images/byd-qin-plus.svg",
+    "gallery": "images/byd-qin-plus.svg",
     "featured": 0
   },
   {
@@ -2177,8 +2177,8 @@
         "value": "500 km"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Chery+eQ5",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Chery+eQ5",
+    "image": "images/chery-eq5.svg",
+    "gallery": "images/chery-eq5.svg",
     "featured": 0
   },
   {
@@ -2211,8 +2211,8 @@
         "value": "405 km"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BYD+Seagull",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=BYD+Seagull",
+    "image": "images/byd-seagull.svg",
+    "gallery": "images/byd-seagull.svg",
     "featured": 0
   },
   {
@@ -2245,8 +2245,8 @@
         "value": "500 km"
       }
     ],
-    "image": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Geely+Geometry+C",
-    "gallery": "https://placehold.co/800x600/0a0a0f/c8a84c?text=Geely+Geometry+C",
+    "image": "images/geely-geometry-c.svg",
+    "gallery": "images/geely-geometry-c.svg",
     "featured": 0
   }
 ]
