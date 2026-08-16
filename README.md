@@ -100,15 +100,22 @@ cp .env.example .env
 
 ## Static Deployment (GitHub Pages)
 
-The frontend can be deployed to GitHub Pages for browsing vehicles. A static `vehicles.json` file is included as a fallback when the API is unavailable.
+The frontend is fully static-friendly: it works both with the Node.js backend (local) and as a pure static site on GitHub Pages. A pre-generated `vehicles.json` file is included as a fallback — when the API is unreachable, the frontend automatically loads vehicle data from this file, so browsing, searching, and filtering all work on GitHub Pages.
 
-**Limitations on GitHub Pages:**
-- Vehicle browsing works (uses `vehicles.json`)
-- Search and filtering work
-- Admin dashboard requires the Node.js backend
-- Newsletter/contact forms require the Node.js backend
+**How the fallback works:**
+- All asset paths (`js/api.js`, images, page links) are **relative**, so they work under any sub-path like `https://username.github.io/repo-name/`
+- `js/api.js` first tries the `/api` endpoints; if they fail (no backend), it reads `vehicles.json` and applies search/filter/category locally in the browser
+- A `.nojekyll` file is included so GitHub Pages serves all files untouched
+
+**Limitations on GitHub Pages (no backend):**
+- Vehicle browsing, search, and filtering work ✅
+- Vehicle detail pages work ✅ (data from `vehicles.json`)
+- Admin dashboard ❌ (requires the Node.js API)
+- Newsletter/contact forms ❌ (require the Node.js API)
+- To get those working, host the backend separately (Render, Railway, Fly.io, etc.) and change `base` in `js/api.js` to the hosted API URL
 
 **To deploy to GitHub Pages:**
-1. Go to repository Settings → Pages
-2. Select the `main` branch and `/ (root)` directory
-3. Save — the site will be available at `https://yourusername.github.io/repo-name`
+1. Go to the repository on GitHub → **Settings → Pages**
+2. Under **Build and deployment**, select **Source: Deploy from a branch**
+3. Select branch `main` and folder `/ (root)`
+4. Click **Save** — the site will be available at `https://seifmomo.github.io/el-gehad-automotive/` (deploy takes 1–2 minutes)

@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-  <script src="/js/api.js"></script>
+  <script src="js/api.js"></script>
   <style>
     :root{
       --bg:#07070a;--bg1:#101116;--bg2:#181a22;--gold:#c8a84c;--gold-glow:rgba(200,168,76,.15);
@@ -67,7 +67,7 @@
 <body>
   <header class="admin-header">
     <div class="container admin-nav">
-      <a href="/admin.html" class="logo">Gehad<span>.</span> Admin</a>
+      <a href="admin.html" class="logo">Gehad<span>.</span> Admin</a>
       <div class="nav-links">
         <a href="#" class="nav-link active" data-tab="dashboard">Dashboard</a>
         <a href="#" class="nav-link" data-tab="vehicles">Vehicles</a>
@@ -338,7 +338,7 @@
     window.deleteInquiry = async function(id) {
       if (!confirm('Delete this inquiry?')) return;
       try {
-        const res = await fetch(`/api/admin/inquiries/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
+        const res = await fetch(`api/admin/inquiries/${id}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
         const data = await res.json();
         if (res.ok) { await loadInquiries(); } else { alert(data.error); }
       } catch (err) { alert('Failed to delete: ' + err.message); }
@@ -346,7 +346,7 @@
 
     window.updateInquiryStatus = async function(id, status) {
       try {
-        await fetch(`/api/admin/inquiries/${id}/status`, {
+        await fetch(`api/admin/inquiries/${id}/status`, {
           method: 'PUT', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` },
           body: JSON.stringify({ status })
         });

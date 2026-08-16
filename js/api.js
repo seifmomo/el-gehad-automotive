@@ -1,6 +1,6 @@
 window.ELG_API = {
-  base: '/api',
-  staticFile: '/vehicles.json',
+  base: 'api',
+  staticFile: 'vehicles.json',
 
   async request(path, options = {}) {
     const url = this.base + path;
