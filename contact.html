@@ -6,60 +6,89 @@
   <title>Contact | Gehad Automotive</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <script src="js/api.js"></script>
   <style>
     :root{
-      --bg:#07070a;--bg1:#101116;--bg2:#181a22;--gold:#c8a84c;--gold-glow:rgba(200,168,76,.15);
-      --text:#eeece8;--muted:#a3a19d;--border:rgba(238,236,232,.08);--ease:cubic-bezier(.25,1,.5,1);
+      --bg:#f6f3ee;--bg-alt:#efe9df;--surface:#ffffff;
+      --ink:#1c1915;--ink-2:#4a443b;--muted:#8a8273;
+      --line:rgba(28,25,21,.12);--line-soft:rgba(28,25,21,.07);
+      --bronze:#b4782c;--bronze-2:#d99e3e;--glow:rgba(180,120,44,.18);
+      --green:#1e7a52;--red:#c0452f;
+      --ease:cubic-bezier(.22,1,.36,1);
+      --r-lg:22px;--r-md:14px;--r-sm:10px;
+      --sh:0 24px 60px rgba(28,25,21,.10);
     }
     *{box-sizing:border-box;margin:0;padding:0}*::before,*::after{box-sizing:border-box}
-    body{background:var(--bg);color:var(--text);font-family:"Outfit",sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden}
+    body{background:var(--bg);color:var(--ink);font-family:"Inter",sans-serif;font-weight:400;line-height:1.7;overflow-x:hidden}
     a{text-decoration:none;color:inherit}
-    .container{width:100%;max-width:1440px;margin:0 auto;padding:0 4rem}
-    @media(max-width:1024px){.container{padding:0 2rem}}
-    @media(max-width:768px){.container{padding:0 1.5rem}}
-    header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(7,7,10,.75);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-    .nav-container{display:flex;justify-content:space-between;align-items:center;height:90px}
-    .logo{font-family:"Cormorant Garamond",serif;font-size:1.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase}
-    .logo span{color:var(--gold)}
-    nav ul{display:flex;gap:3rem;list-style:none}
-    nav a{font-size:.85rem;text-transform:uppercase;letter-spacing:2px;font-weight:400;transition:color .3s}
-    nav a:hover{color:var(--gold)}
-    .cta-btn{border:1px solid var(--gold);color:var(--gold);padding:.75rem 1.75rem;font-size:.8rem;text-transform:uppercase;letter-spacing:2px;font-weight:500;position:relative;overflow:hidden;transition:color .4s}
-    .cta-btn::before{content:"";position:absolute;top:0;left:-100%;width:100%;height:100%;background:var(--gold);transition:left .4s var(--ease);z-index:-1}
-    .cta-btn:hover{color:var(--bg)}
-    .cta-btn:hover::before{left:0}
-    .hero{height:40vh;position:relative;display:flex;align-items:center;overflow:hidden;padding-top:90px}
-    .hero::after{content:"";position:absolute;inset:0;background:rgba(7,7,10,.8);z-index:1}
-    .hero-content{position:relative;z-index:2;max-width:800px}
-    .hero-title{font-family:"Cormorant Garamond",serif;font-size:4rem;font-weight:400;line-height:1.05}
-    .hero-title em{font-style:italic}
-    .contact-section{padding:6rem 0}
-    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem}
-    @media(max-width:992px){.contact-grid{grid-template-columns:1fr}}
-    .contact-info h3{font-family:"Cormorant Garamond",serif;font-size:2rem;margin-bottom:2rem}
-    .contact-detail{display:flex;gap:1.5rem;margin-bottom:2rem;align-items:flex-start}
-    .contact-detail i{font-size:1.5rem;color:var(--gold);margin-top:.25rem;min-width:24px}
-    .contact-detail div h4{font-size:.85rem;text-transform:uppercase;letter-spacing:2px;color:var(--muted)}
-    .contact-detail div p{font-size:1rem;margin-top:.25rem}
-    .contact-form h3{font-family:"Cormorant Garamond",serif;font-size:2rem;margin-bottom:2rem}
-    .form-group{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem}
-    .form-group label{font-size:.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--muted)}
-    .form-group input,textarea{background:var(--bg1);border:1px solid var(--border);color:var(--text);padding:1rem;font-family:inherit;font-size:.9rem;transition:border-color .3s}
-    .form-group input:focus,textarea:focus{outline:none;border-color:var(--gold)}
-    textarea{min-height:150px;resize:vertical}
-    .form-feedback{padding:.75rem;margin-top:1rem;font-size:.85rem;text-transform:uppercase;letter-spacing:1px}
-    .form-feedback.success{color:#50fa7b}
-    .form-feedback.error{color:#ff6b6b}
-    .loading{opacity:.5;pointer-events:none}
-    footer{padding:3rem 0;border-top:1px solid var(--border);font-size:.85rem;color:var(--muted)}
+    button{font-family:inherit;border:none;background:none;cursor:pointer}
+    .container{width:100%;max-width:1320px;margin:0 auto;padding:0 3rem}
+    @media(max-width:1024px){.container{padding:0 1.75rem}}
+    @media(max-width:640px){.container{padding:0 1.25rem}}
+
+    header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:rgba(246,243,238,.86);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--line-soft)}
+    .nav-container{display:flex;align-items:center;justify-content:space-between;height:84px}
+    .logo{font-family:"Space Grotesk",sans-serif;font-size:1.45rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);display:flex;align-items:center;gap:.5rem}
+    .logo span{color:var(--bronze)}
+    .logo-mark{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--bronze-2),var(--bronze))}
+    nav ul{display:flex;gap:2.5rem;list-style:none}
+    nav a{font-size:.8rem;font-weight:500;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-2);position:relative;padding:.4rem 0;transition:color .3s}
+    nav a::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;background:linear-gradient(90deg,var(--bronze-2),var(--bronze));transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+    nav a:hover{color:var(--ink)}
+    nav a:hover::after{transform:scaleX(1)}
+    .cta-btn{font-family:"Space Grotesk",sans-serif;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,var(--bronze-2),var(--bronze));padding:.8rem 1.6rem;border-radius:999px;box-shadow:0 8px 20px var(--glow);transition:transform .3s var(--ease),box-shadow .3s}
+    .cta-btn:hover{transform:translateY(-2px);box-shadow:0 14px 28px var(--glow)}
+
+    main{padding-top:84px}
+    .page-hero{padding:5.5rem 0 2.5rem;text-align:center;background:var(--bg-alt);border-bottom:1px solid var(--line-soft)}
+    .page-eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-size:.75rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--bronze);margin-bottom:1.1rem}
+    .page-eyebrow::before{content:"";width:34px;height:2px;background:linear-gradient(90deg,var(--bronze),transparent)}
+    .page-eyebrow::after{content:"";width:34px;height:2px;background:linear-gradient(-90deg,var(--bronze),transparent)}
+    .page-title{font-family:"Space Grotesk",sans-serif;font-size:clamp(2.4rem,5vw,3.8rem);font-weight:600;line-height:1.05;letter-spacing:-.02em}
+    .page-title em{font-style:italic;font-weight:500;background:linear-gradient(120deg,var(--bronze-2),var(--bronze));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+    .page-sub{color:var(--muted);font-weight:300;max-width:52ch;margin:1rem auto 0}
+
+    .contact-section{padding:5rem 0 6rem}
+    .contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:4rem;align-items:start}
+    @media(max-width:992px){.contact-grid{grid-template-columns:1fr;gap:3rem}}
+    .contact-info h3{font-family:"Space Grotesk",sans-serif;font-size:1.6rem;font-weight:600;margin-bottom:.6rem}
+    .contact-info .contact-lead{color:var(--muted);font-weight:300;margin-bottom:2.2rem}
+    .contact-detail{display:flex;gap:1.3rem;margin-bottom:1.2rem;align-items:flex-start;background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r-md);padding:1.4rem 1.6rem;transition:transform .35s var(--ease),box-shadow .35s}
+    .contact-detail:hover{transform:translateY(-3px);box-shadow:var(--sh)}
+    .contact-icon{width:44px;height:44px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--bronze-2),var(--bronze));color:#fff;display:flex;align-items:center;justify-content:center;font-size:1rem;box-shadow:0 8px 18px var(--glow)}
+    .contact-detail div h4{font-size:.72rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+    .contact-detail div p{font-size:.98rem;margin-top:.2rem;color:var(--ink-2)}
+    .contact-detail div p a{color:var(--bronze);transition:color .3s}
+    .contact-detail div p a:hover{color:var(--bronze-2)}
+
+    .contact-form-card{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r-lg);padding:2.8rem;box-shadow:var(--sh)}
+    @media(max-width:640px){.contact-form-card{padding:1.8rem}}
+    .contact-form-card h3{font-family:"Space Grotesk",sans-serif;font-size:1.6rem;font-weight:600;margin-bottom:.6rem}
+    .contact-form-card .form-lead{color:var(--muted);font-weight:300;margin-bottom:2rem}
+    .form-group{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.3rem}
+    .form-group label{font-size:.74rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+    .form-group input,.form-group textarea{background:var(--bg);border:1px solid var(--line);border-radius:var(--r-sm);color:var(--ink);padding:.95rem 1.1rem;font-family:inherit;font-size:.92rem;resize:vertical;transition:border-color .3s,box-shadow .3s}
+    .form-group input::placeholder,.form-group textarea::placeholder{color:var(--muted)}
+    .form-group input:focus,.form-group textarea:focus{outline:none;border-color:var(--bronze);box-shadow:0 0 0 4px var(--glow)}
+    textarea{min-height:140px}
+    .btn-bronze{display:inline-flex;align-items:center;gap:.6rem;font-family:"Space Grotesk",sans-serif;font-size:.85rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:1rem 2rem;border-radius:999px;background:linear-gradient(135deg,var(--bronze-2),var(--bronze));color:#fff;box-shadow:0 10px 26px var(--glow);transition:transform .3s var(--ease),box-shadow .3s}
+    .btn-bronze:hover{transform:translateY(-2px);box-shadow:0 16px 34px var(--glow)}
+    .btn-bronze:disabled,.btn-bronze.loading{opacity:.6;pointer-events:none}
+    .form-feedback{padding:.8rem 1.1rem;border-radius:var(--r-sm);font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-top:1rem}
+    .form-feedback.success{background:rgba(30,122,82,.1);color:var(--green)}
+    .form-feedback.error{background:rgba(192,69,47,.1);color:var(--red)}
+
+    footer{background:var(--ink);color:#f2eee6;padding:3rem 0}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;font-size:.85rem;color:#a89f8e}
+    .footer-inner a{color:#a89f8e;transition:color .3s}
+    .footer-inner a:hover{color:#fff}
   </style>
 </head>
 <body>
   <header>
     <div class="container nav-container">
-      <a href="./" class="logo">Gehad<span>.</span></a>
+      <a href="./" class="logo"><span class="logo-mark"></span>Gehad<span>.</span></a>
       <nav>
         <ul>
           <li><a href="./#featured">Featured</a></li>
@@ -72,77 +101,93 @@
     </div>
   </header>
 
-  <section class="hero">
-    <div class="hero-content">
-      <h1 class="hero-title">Let's <em>Connect</em></h1>
-    </div>
-  </section>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <span class="page-eyebrow">Private Allocation Desk</span>
+        <h1 class="page-title">Let's <em>connect</em></h1>
+        <p class="page-sub">Our concierge team responds within 2 hours during business days. We handle all off-market allocations and bespoke build consultations.</p>
+      </div>
+    </section>
 
-  <section class="contact-section">
-    <div class="container">
-      <div class="contact-grid">
-        <div class="contact-info">
-          <h3>Private Allocation Desk</h3>
-          <p style="color:var(--muted);margin-bottom:2rem;">Our concierge team responds within 2 hours. We handle all off-market allocations and bespoke build consultations.</p>
+    <section class="contact-section">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>Visit or reach us</h3>
+            <p class="contact-lead">Prefer a private consultation? Book a showroom visit or reach the desk directly.</p>
 
-          <div class="contact-detail">
-            <i>&#9951;</i>
-            <div>
-              <h4>Showroom</h4>
-              <p>New Cairo District<br>Zayed Branch Location</p>
+            <div class="contact-detail">
+              <div class="contact-icon">&#9951;</div>
+              <div>
+                <h4>Showroom</h4>
+                <p>New Cairo District<br>Zayed Branch Location</p>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="contact-icon">&#9993;</div>
+              <div>
+                <h4>Email</h4>
+                <p><a href="mailto:desk@gehad-automotive.com">desk@gehad-automotive.com</a></p>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="contact-icon">&#9743;</div>
+              <div>
+                <h4>Phone</h4>
+                <p><a href="tel:+201234567890">+20 123 456 7890</a></p>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="contact-icon">&#9203;</div>
+              <div>
+                <h4>Hours</h4>
+                <p>Sat &ndash; Thu, 10:00 &ndash; 22:00<br>Friday by appointment</p>
+              </div>
             </div>
           </div>
 
-          <div class="contact-detail">
-            <i>&#9983;</i>
-            <div>
-              <h4>Email</h4>
-              <p>desk@gehad-automotive.com</p>
-            </div>
+          <div class="contact-form-card">
+            <h3>Send a message</h3>
+            <p class="form-lead">Tell us what you're looking for — a specific allocation, financing structure, or a trade-in assessment.</p>
+            <form id="contact-form">
+              <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" required placeholder="Your name">
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" required placeholder="you@email.com">
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="+20 ...">
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" value="General Inquiry">
+              </div>
+              <div class="form-group">
+                <label for="message">Your Message *</label>
+                <textarea id="message" placeholder="How can we assist you with your automotive needs?" required></textarea>
+              </div>
+              <button type="submit" class="btn-bronze" id="submit-btn">Send Message</button>
+              <div id="form-feedback" class="form-feedback"></div>
+            </form>
           </div>
-
-          <div class="contact-detail">
-            <i>&#9743;</i>
-            <div>
-              <h4>Phone</h4>
-              <p>+20 123 456 7890</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="contact-form">
-          <h3>Send a Message</h3>
-          <form id="contact-form">
-            <div class="form-group">
-              <label for="name">Full Name *</label>
-              <input type="text" id="name" required>
-            </div>
-            <div class="form-group">
-              <label for="email">Email Address *</label>
-              <input type="email" id="email" required>
-            </div>
-            <div class="form-group">
-              <label for="phone">Phone Number</label>
-              <input type="tel" id="phone">
-            </div>
-            <div class="form-group">
-              <label for="subject">Subject</label>
-              <input type="text" id="subject" value="General Inquiry">
-            </div>
-            <div class="form-group">
-              <label for="message">Your Message *</label>
-              <textarea id="message" placeholder="How can we assist you with your automotive needs?" required></textarea>
-            </div>
-            <button type="submit" class="cta-btn" id="submit-btn">Send Message</button>
-            <div id="form-feedback" class="form-feedback"></div>
-          </form>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer>
-    <p>&copy; 2026 Gehad Automotive. Crafted beautifully to exact luxury specifications.</p>
+    <div class="container footer-inner">
+      <p>&copy; 2026 Gehad Automotive. All rights reserved.</p>
+      <p><a href="admin.html">Admin</a> &middot; <a href="./#inventory">Browse the fleet</a></p>
+    </div>
   </footer>
 
   <script>
@@ -153,6 +198,7 @@
       btn.classList.add('loading');
       btn.textContent = 'Sending...';
       feedback.textContent = '';
+      feedback.className = 'form-feedback';
 
       try {
         await ELG_API.submitInquiry({
@@ -162,7 +208,7 @@
           subject: document.getElementById('subject').value,
           message: document.getElementById('message').value
         });
-        feedback.textContent = 'Message sent successfully! Our team will contact you within 2 hours.';
+        feedback.textContent = 'Message sent! Our team will contact you within 2 hours.';
         feedback.className = 'form-feedback success';
         e.target.reset();
       } catch (err) {

@@ -1,6 +1,33 @@
 # Gehad Automotive
 
-A complete car dealership website for Gehad Automotive — "Where Performance Meets Luxury". Built with a Node.js/Express backend and SQLite database, serving a dynamic frontend with 71+ vehicle models across 28 brands available in the Egyptian market.
+A modern luxury car dealership website for the Egyptian market — **"Where Performance Meets Luxury"**.
+
+Built with a Node.js/Express + SQLite backend and a fresh, editorial-style frontend, the site ships with a live catalog of **71 vehicles across 28 brands**, transparent EGP pricing, and a full private-sales workflow.
+
+## Live Demo
+
+- **GitHub Pages (static):** https://seifmomo.github.io/el-gehad-automotive/
+- **Local (full app):** `npm start` → http://localhost:5000
+
+## Features
+
+- **Vehicle catalog** — 71 models, 28 brands (Audi, Mercedes-Benz, BMW, Bentley, Porsche, Toyota, BYD and more), with specs, prices, and finance options in EGP
+- **Search & filter** — instant search by brand/model, category filters (Sedans, SUVs, Sports)
+- **Featured showcase** — rotating "Masterpiece of the Month" powered by the featured vehicle in the database
+- **Private inquiries** — per-vehicle and general contact forms that land in the admin dashboard
+- **Newsletter** — off-market allocation drops signup with subscriber management
+- **Admin dashboard** — JWT-secured, with stats, vehicle CRUD, inquiry management, and subscriber list
+- **Static-first frontend** — works on GitHub Pages out of the box via a bundled `vehicles.json` fallback when the API is unreachable
+
+## Tech Stack
+
+| Layer    | Technology                     |
+|----------|--------------------------------|
+| Frontend | Vanilla HTML/CSS/JS (no framework), Space Grotesk + Inter |
+| Backend  | Node.js, Express              |
+| Database | SQLite (via `sqlite3`)         |
+| Auth     | JWT (`jsonwebtoken`) + `bcryptjs` |
+| Security | Rate limiting, input validation, protected admin routes |
 
 ## Quick Start
 
@@ -8,114 +35,69 @@ A complete car dealership website for Gehad Automotive — "Where Performance Me
 # 1. Install dependencies
 npm install
 
-# 2. Start the server
+# 2. Start the server (seeds the database automatically)
 npm start
 
 # 3. Open in browser
 http://localhost:5000
-```
 
-## Project Overview
-
-### Backend (Node.js + Express + SQLite)
-- REST API for vehicle inventory with **search, filtering, and pagination**
-- Newsletter subscription with validation and rate limiting
-- Contact inquiry system with admin management
-- JWT-based admin authentication
-- Admin dashboard at `/admin.html`
-- SQLite database (auto-created, no setup needed)
-
-### Frontend
-- `index.html` — Landing page with dynamic inventory grid, featured showcase, and newsletter form
-- `vehicle.html` — Vehicle detail pages with inquiry forms
-- `contact.html` — Full contact page with inquiry submission
-- `admin.html` — Admin dashboard for managing vehicles, inquiries, and subscribers
-- `js/api.js` — Frontend API client library
-- Scroll reveal animations, skeleton loading, and smooth transitions
-
-### Database
-- Auto-seeded with **71 vehicle models** from 28 brands (Toyota, BMW, Mercedes-Benz, Audi, Porsche, Honda, Hyundai, Kia, and more)
-- Includes luxury and exotic vehicles (original 6 from the frontend design)
-- Admin account auto-created
-
-## API Endpoints
-
-### Public
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/api/vehicles` | List vehicles (query: `?category=`, `?featured=1`, `?search=`, `?page=`, `?limit=`) |
-| `GET` | `/api/vehicles/:id` | Get a single vehicle by ID |
-| `POST` | `/api/newsletter` | Subscribe email (`{ email, source }`) |
-| `POST` | `/api/contact` | Submit inquiry (`{ name, email, phone, subject, message, vehicle_id }`) |
-| `GET` | `/api/health` | Health check |
-
-### Admin (requires JWT Bearer token)
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/api/admin/login` | Login (`{ username, password }`) → returns JWT token |
-| `GET` | `/api/admin/stats` | Dashboard statistics |
-| `GET` | `/api/admin/inquiries` | List all inquiries |
-| `PUT` | `/api/admin/inquiries/:id/status` | Update inquiry status |
-| `DELETE` | `/api/admin/inquiries/:id` | Delete inquiry |
-| `GET` | `/api/admin/subscribers` | List all subscribers |
-| `POST` | `/api/vehicles` | Create a vehicle |
-| `PUT` | `/api/vehicles/:id` | Update a vehicle |
-| `DELETE` | `/api/vehicles/:id` | Delete a vehicle |
-
-### Default Admin Credentials
-```
-Username: admin
-Password: GehadAdmin2026!
-```
-
-## Running Tests
-
-```bash
+# 4. Run the test suite (34 tests)
 npm test
 ```
 
-Runs 34 tests covering all API endpoints, authentication, seed data, search, filtering, and rate limiting.
+> The database file is created at `data/database.sqlite` on first run and seeded with the 71 vehicles plus the default admin account.
 
-## Environment Variables
+## Default Admin Account
 
-Copy `.env.example` to `.env`:
-```bash
-cp .env.example .env
+| Credential | Value            |
+|------------|------------------|
+| Username   | `admin`          |
+| Password   | `GehadAdmin2026!`|
+
+Change the password after your first login via `src/models/seed.js`.
+
+## Project Structure
+
+```
+├── index.html          # Home: hero, stats, featured, inventory, experience, newsletter
+├── vehicle.html        # Vehicle detail page with inquiry form
+├── contact.html        # Contact / private allocation desk
+├── admin.html          # Admin dashboard (login required)
+├── js/api.js           # Frontend API client with static JSON fallback
+├── vehicles.json       # Static export for GitHub Pages mode
+├── images/             # Branded SVG placeholders for all 71 vehicles
+├── server.js           # Express entry point
+├── src/
+│   ├── config/         # Database setup
+│   ├── middleware/     # JWT auth + rate limiting
+│   ├── models/         # Schema, seed data (71 vehicles), seeding logic
+│   └── routes/         # vehicles, newsletter, contact, admin APIs
+└── test.js             # End-to-end API test suite (34 tests)
 ```
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `PORT` | `5000` | Server port |
-| `JWT_SECRET` | *(required)* | Secret for JWT token signing |
-| `JWT_EXPIRES_IN` | `7d` | Token expiration time |
+## API Overview
 
-## Pages
+| Method | Endpoint                   | Description                     |
+|--------|----------------------------|---------------------------------|
+| GET    | `/api/vehicles`            | List vehicles (search/filter)   |
+| GET    | `/api/vehicles/:id`        | Vehicle details                 |
+| POST   | `/api/newsletter`          | Subscribe an email              |
+| POST   | `/api/contact`             | Submit an inquiry               |
+| POST   | `/api/admin/login`         | Admin login (JWT)               |
+| GET    | `/api/admin/stats`         | Dashboard stats                 |
+| GET    | `/api/admin/vehicles`      | All vehicles (auth)             |
+| POST   | `/api/admin/vehicles`      | Create vehicle (auth)           |
+| PUT    | `/api/admin/vehicles/:id`  | Update vehicle (auth)           |
+| DELETE | `/api/admin/vehicles/:id`  | Delete vehicle (auth)           |
+| GET    | `/api/admin/inquiries`     | Inquiries (auth)                |
+| GET    | `/api/admin/subscribers`   | Subscribers (auth)              |
 
-| URL | Description |
-|-----|-------------|
-| `/` | Home page with featured showcase and dynamic inventory |
-| `/vehicle.html?id=N` | Vehicle detail page with inquiry form |
-| `/contact.html` | Contact page with full inquiry form |
-| `/admin.html` | Admin dashboard (login required) |
+## Deployment Notes
 
-## Static Deployment (GitHub Pages)
+- **GitHub Pages** serves the full catalog statically (browsing, search, filtering, vehicle pages). Admin dashboard and forms require the backend.
+- **Full stack hosting**: the Express app runs anywhere Node.js is available (Render, Railway, Fly.io, a VPS). Point `base` in `js/api.js` at the hosted API if you deploy the frontend separately.
+- Environment variables (see `.env.example`): `PORT`, `JWT_SECRET`, `JWT_EXPIRES_IN`.
 
-The frontend is fully static-friendly: it works both with the Node.js backend (local) and as a pure static site on GitHub Pages. A pre-generated `vehicles.json` file is included as a fallback — when the API is unreachable, the frontend automatically loads vehicle data from this file, so browsing, searching, and filtering all work on GitHub Pages.
+---
 
-**How the fallback works:**
-- All asset paths (`js/api.js`, images, page links) are **relative**, so they work under any sub-path like `https://username.github.io/repo-name/`
-- `js/api.js` first tries the `/api` endpoints; if they fail (no backend), it reads `vehicles.json` and applies search/filter/category locally in the browser
-- A `.nojekyll` file is included so GitHub Pages serves all files untouched
-
-**Limitations on GitHub Pages (no backend):**
-- Vehicle browsing, search, and filtering work ✅
-- Vehicle detail pages work ✅ (data from `vehicles.json`)
-- Admin dashboard ❌ (requires the Node.js API)
-- Newsletter/contact forms ❌ (require the Node.js API)
-- To get those working, host the backend separately (Render, Railway, Fly.io, etc.) and change `base` in `js/api.js` to the hosted API URL
-
-**To deploy to GitHub Pages:**
-1. Go to the repository on GitHub → **Settings → Pages**
-2. Under **Build and deployment**, select **Source: Deploy from a branch**
-3. Select branch `main` and folder `/ (root)`
-4. Click **Save** — the site will be available at `https://seifmomo.github.io/el-gehad-automotive/` (deploy takes 1–2 minutes)
+© 2026 Gehad Automotive. Crafted to exact luxury specifications.
